@@ -3,3 +3,6 @@
 /lua_modules
 /.luarocks
 .DS_Store
+
+# machine-local state (current theme mode)
+/state/

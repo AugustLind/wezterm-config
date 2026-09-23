@@ -1,3 +1,25 @@
+# August's WezTerm config
+
+Personal WezTerm setup, based on [KevinSilvester/wezterm-config](https://github.com/KevinSilvester/wezterm-config) (MIT). The original README follows below.
+
+## Install on a new machine (Linux)
+
+```bash
+git clone git@github.com:AugustLind/wezterm-config.git ~/.config/wezterm
+~/.config/wezterm/install.sh --all   # installs WezTerm nightly + JetBrainsMono Nerd Font, then sets up the launcher
+```
+
+Run `install.sh` without `--all` if WezTerm and the font are already installed.
+
+## Changes from upstream
+
+- **Lighter rendering for low-RAM laptops:** OpenGL front end, 60 fps, no cursor animation, background images off by default, 5k scrollback, status bar refreshes every 5s.
+- **Persistent sessions:** WezTerm attaches to a background `unix` mux domain, so shells survive a GUI crash. `install.sh` points the desktop launcher at `wezterm connect unix`. Closing a window does not end its shells; `exit` or Alt+Ctrl+W does.
+- **Light/dark theme:** `utils/theme.lua` + `colors/custom_light.lua`, mode stored in `state/theme` (not committed).
+- **Linux cleanup:** Alt+Ctrl+T opens a normal tab (was a Windows WSL domain); launcher menu lists Bash only.
+
+---
+
 <h2 align="center">My WezTerm Config</h2>
 
 <p align="center">

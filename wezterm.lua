@@ -1,4 +1,8 @@
+local wezterm = require('wezterm')
 local Config = require('config')
+local theme = require('utils.theme')
+
+wezterm.add_to_config_reload_watch_list(theme.state_file)
 
 require('utils.backdrops')
    -- :set_images_dir(require('wezterm').home_dir .. '/Pictures/Wallpapers/')
@@ -6,7 +10,7 @@ require('utils.backdrops')
    :random()
 
 require('events.left-status').setup()
-require('events.right-status').setup({ date_format = '%a %H:%M:%S' })
+require('events.right-status').setup({ date_format = '%a %H:%M' })
 require('events.tab-title').setup({
    hide_active_tab_unseen = true,
    unseen_icon = 'numbered_box',

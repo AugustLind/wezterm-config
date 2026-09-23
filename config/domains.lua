@@ -12,6 +12,12 @@ local options = {
    wsl_domains = {},
 }
 
+if platform.is_linux then
+   -- keep shells alive in a background mux server, so a GUI crash doesn't kill them
+   options.unix_domains = { { name = 'unix' } }
+   options.default_gui_startup_args = { 'connect', 'unix' }
+end
+
 if platform.is_win then
    options.ssh_domains = {
       {

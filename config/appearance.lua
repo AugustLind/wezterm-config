@@ -1,29 +1,31 @@
 local gpu_adapters = require('utils.gpu-adapter')
 local backdrops = require('utils.backdrops')
-local colors = require('colors.custom')
+local theme = require('utils.theme')
+local colors = theme.colors()
+local is_light = theme.is_light()
 
 ---@type Config
 return {
-   max_fps = 120,
-   front_end = 'WebGpu', ---@type 'WebGpu' | 'OpenGL' | 'Software'
-   webgpu_power_preference = 'HighPerformance',
+   max_fps = 60,
+   front_end = 'OpenGL', ---@type 'WebGpu' | 'OpenGL' | 'Software'
+   webgpu_power_preference = 'LowPower',
    webgpu_preferred_adapter = gpu_adapters:pick_best(),
    -- webgpu_preferred_adapter = gpu_adapters:pick_manual('Dx12', 'IntegratedGpu'),
    -- webgpu_preferred_adapter = gpu_adapters:pick_manual('Gl', 'Other'),
    underline_thickness = '1.5pt',
 
    -- cursor
-   animation_fps = 120,
+   animation_fps = 1,
    cursor_blink_ease_in = 'EaseOut',
    cursor_blink_ease_out = 'EaseOut',
-   default_cursor_style = 'BlinkingBlock',
+   default_cursor_style = 'SteadyBlock',
    cursor_blink_rate = 650,
 
    -- color scheme
    colors = colors,
 
    -- background: pass in `true` if you want wezterm to start with focus mode on (no bg images)
-   background = backdrops:initial_options({ no_img = false }),
+   background = backdrops:initial_options({ no_img = true }),
 
    -- scrollbar
    enable_scroll_bar = true,
@@ -37,8 +39,8 @@ return {
    switch_to_last_active_tab_when_closing_tab = true,
 
    -- command palette
-   command_palette_fg_color = '#b4befe',
-   command_palette_bg_color = '#11111b',
+   command_palette_fg_color = is_light and '#4c4f69' or '#b4befe',
+   command_palette_bg_color = is_light and '#eff1f5' or '#11111b',
    command_palette_font_size = 12,
    command_palette_rows = 25,
 
@@ -52,7 +54,7 @@ return {
    adjust_window_size_when_changing_font_size = false,
    window_close_confirmation = 'NeverPrompt',
    window_frame = {
-      active_titlebar_bg = '#090909',
+      active_titlebar_bg = is_light and '#e6e9ef' or '#090909',
       -- font = fonts.font,
       -- font_size = fonts.font_size,
    },
