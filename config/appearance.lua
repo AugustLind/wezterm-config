@@ -53,6 +53,11 @@ return {
    },
    adjust_window_size_when_changing_font_size = false,
    window_close_confirmation = 'NeverPrompt',
+   -- run under XWayland so GNOME draws its native titlebar (wezterm's own Wayland
+   -- titlebar doesn't show up on GNOME): drag to move, drag to a screen edge to
+   -- snap/tile, double-click to maximize
+   enable_wayland = false,
+   window_decorations = 'TITLE|RESIZE',
    window_frame = {
       active_titlebar_bg = is_light and '#e6e9ef' or '#090909',
       -- font = fonts.font,

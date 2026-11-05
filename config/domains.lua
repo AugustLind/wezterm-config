@@ -14,8 +14,9 @@ local options = {
 
 if platform.is_linux then
    -- keep shells alive in a background mux server, so a GUI crash doesn't kill them
-   options.unix_domains = { { name = 'unix' } }
-   options.default_gui_startup_args = { 'connect', 'unix' }
+   -- disabled: routing through the mux server made nvim/claude input laggy
+   -- options.unix_domains = { { name = 'unix' } }
+   -- options.default_gui_startup_args = { 'connect', 'unix' }
 end
 
 if platform.is_win then

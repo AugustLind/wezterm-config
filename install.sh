@@ -40,15 +40,15 @@ if [[ "${1:-}" == "--all" ]]; then
    fi
 fi
 
-# Launcher override: open WezTerm attached to the persistent unix-domain mux
+# Launcher override: use direct startup, matching config/domains.lua.
 desktop=/usr/share/applications/org.wezfurlong.wezterm.desktop
 if [[ -f "$desktop" ]]; then
-   echo "== Installing launcher override (wezterm connect unix) =="
+   echo "== Installing launcher override (wezterm start --cwd .) =="
    mkdir -p "$HOME/.local/share/applications"
-   sed 's|^Exec=wezterm start --cwd \.|Exec=wezterm connect unix|' "$desktop" \
+   sed 's|^Exec=wezterm connect unix.*|Exec=wezterm start --cwd .|' "$desktop" \
       > "$HOME/.local/share/applications/org.wezfurlong.wezterm.desktop"
 else
    echo "WezTerm launcher not found; skipping launcher override (install WezTerm first or use --all)."
 fi
 
-echo "Done. Close all WezTerm windows (and run 'pkill wezterm-mux') then reopen WezTerm."
+echo "Done. Save your work, close WezTerm, and reopen it from the launcher."
